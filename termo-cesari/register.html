@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar - Termo Cesari</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+    <div class="split-screen">
+        <div class="left-pane">
+            <div class="brand-content">
+                <img src="assets/logo.png" alt="Logo Termo Cesari" class="logo">
+                </div>
+        </div>
+
+        <div class="right-pane">
+            <div class="form-container">
+                <h2>REGISTRAR</h2>
+                
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" placeholder="Crie uma senha segura" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">Confirmar Senha</label>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Repita a senha" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit">SALVAR</button>
+                </form>
+
+                <div class="auth-footer">
+                    <p>Já tem uma conta? <a href="login.html">Entrar</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/auth-service.js"></script>
+</body>
+</html>
