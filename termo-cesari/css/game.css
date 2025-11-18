@@ -131,8 +131,8 @@ body {
 }
 
 .key {
-    background-color: #3374d4; /* Cinza claro padrão */
-    color: #333;
+    background-color: #0D365D; /* Cinza claro padrão */
+    color: #ffffff;
     border: none;
     border-radius: 6px;
     padding: 15px 10px;
@@ -149,7 +149,7 @@ body {
 
 .key.large { /* Teclas ENTER e BACKSPACE */
     flex: 1.5; /* Ocupam mais espaço */
-    max-width: 80px;
+    max-width: 100px;
     padding: 15px 15px;
     font-size: 1rem;
 }
@@ -162,6 +162,7 @@ body {
 /* Efeito hover nas teclas */
 .key:hover {
     background-color: #c0c4c9;
+    color: #2958bb;
     transform: translateY(-1px);
 }
 
