@@ -70,7 +70,7 @@ body {
     display: grid;
     grid-template-rows: repeat(5, 1fr); /* 5 tentativas */
     gap: 8px; /* Espaço entre as linhas */
-    max-width: 350px; /* Largura máxima para não esticar demais em telas grandes */
+    max-width: 500px; /* Largura máxima para não esticar demais em telas grandes */
     width: 100%;
 }
 
@@ -83,11 +83,11 @@ body {
 .letter-box {
     width: 100%;
     aspect-ratio: 1 / 1; /* Faz as caixas serem quadradas */
-    border: 2px solid #a8a8a8; /* Borda cinza para as caixas */
+    border: 1px solid #1a39b5; /* Borda cinza para as caixas */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.8rem;
+    font-size: 3rem;
     font-weight: 700;
     text-transform: uppercase;
     color: #333;
@@ -370,3 +370,4 @@ body {
         max-width: 55px;
     }
 }
+
