@@ -1,0 +1,373 @@
+/* --- Reset Básico --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Fonte principal */
+    background-color: #f4f4f4; /* Fundo claro para o corpo */
+    display: flex;
+    flex-direction: column; /* Para a navbar ficar no topo e o conteúdo abaixo */
+    min-height: 100vh;
+}
+
+/* --- Navbar (Cabeçalho) --- */
+.navbar {
+    background-color: #1a3a7f; /* Seu azul principal */
+    color: white;
+    padding: 0rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo {
+    max-width: 100px; /* Tamanho do logo na navbar */
+    height: auto;
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 1.5rem; /* Espaço entre os links */
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Um brilho suave no hover */
+    transform: translateY(-1px);
+}
+
+/* --- Container do Jogo Principal --- */
+.game-container {
+    flex-grow: 1; /* Ocupa o espaço restante */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centraliza o grid e teclado verticalmente */
+    padding: 2rem 1rem;
+    gap: 2rem; /* Espaço entre o grid e o teclado */
+}
+
+/* --- Grid do Jogo --- */
+.game-board {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr); /* 5 tentativas */
+    gap: 8px; /* Espaço entre as linhas */
+    max-width: 500px; /* Largura máxima para não esticar demais em telas grandes */
+    width: 100%;
+}
+
+.word-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 letras por palavra */
+    gap: 8px; /* Espaço entre as caixas de letras */
+}
+
+.letter-box {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Faz as caixas serem quadradas */
+    border: 1px solid #1a39b5; /* Borda cinza para as caixas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #333;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* --- Cores das letras do jogo (Adicione via JS) --- */
+.letter-box.correct { /* Letra certa, posição certa */
+    background-color: #28a745; /* Verde */
+    border-color: #28a745;
+    color: white;
+}
+
+.letter-box.present { /* Letra certa, posição errada */
+    background-color: #ffc107; /* Amarelo */
+    border-color: #ffc107;
+    color: white;
+}
+
+.letter-box.absent { /* Letra não existe na palavra */
+    background-color: #6c757d; /* Cinza escuro */
+    border-color: #6c757d;
+    color: white;
+}
+
+/* --- Teclado Virtual --- */
+.keyboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espaço entre as linhas do teclado */
+    max-width: 500px; /* Largura máxima do teclado */
+    width: 100%;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center; /* Centraliza as teclas */
+    gap: 6px; /* Espaço entre as teclas */
+}
+
+.key {
+    background-color: #0D365D; /* Cinza claro padrão */
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 15px 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif; /* Fonte para o teclado */
+    cursor: pointer;
+    flex: 1; /* Todas as teclas tentam ocupar o mesmo espaço */
+    max-width: 45px; /* Largura máxima para teclas pequenas */
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.1);
+    text-transform: uppercase;
+}
+
+.key.large { /* Teclas ENTER e BACKSPACE */
+    flex: 1.5; /* Ocupam mais espaço */
+    max-width: 100px;
+    padding: 15px 15px;
+    font-size: 1rem;
+}
+
+.key.spacer {
+    flex: 0.5; /* Espaço para centralizar a linha do meio */
+    visibility: hidden; /* Invisível */
+}
+
+/* Efeito hover nas teclas */
+.key:hover {
+    background-color: #c0c4c9;
+    color: #2958bb;
+    transform: translateY(-1px);
+}
+
+.key:active {
+    transform: translateY(1px); /* Efeito de clique */
+}
+
+/* --- Cores das teclas do teclado (Reflete o estado do jogo) --- */
+.key.correct { /* Tecla verde */
+    background-color: #28a745;
+    color: white;
+}
+.key.present { /* Tecla amarela */
+    background-color: #ffc107;
+    color: white;
+}
+.key.absent { /* Tecla cinza escuro */
+    background-color: #6c757d;
+    color: white;
+}
+
+/* --- Modal Overlay (Fundo Escuro) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Fica acima de tudo */
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.hidden {
+    display: none;
+    opacity: 0;
+}
+
+/* --- Caixa do Modal --- */
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 90%;
+    width: 400px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: slideUp 0.3s ease-out;
+    font-family: 'Poppins', sans-serif;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- Elementos Internos --- */
+.modal-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+#modal-title {
+    color: #1a3a7f; /* Azul da marca */
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.modal-text {
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.secret-word-display {
+    font-family: 'Oswald', sans-serif; /* Fonte mais robusta para a palavra */
+    font-size: 2rem;
+    color: #333;
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin: 10px 0 20px 0;
+    padding: 10px;
+    background-color: #f0f2f5;
+    border-radius: 8px;
+    border: 2px solid #1a3a7f;
+}
+
+.attempts-text {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Botões --- */
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-modal {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-modal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Botão Jogar Novamente (Azul Principal) */
+.btn-restart {
+    background-color: #1a3a7f;
+    color: white;
+    flex: 1;
+}
+
+/* Botão Compartilhar (Verde WhatsApp/Success) */
+.btn-share {
+    background-color: #28a745;
+    color: white;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+/* --- Responsividade (Mobile) --- */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Navbar empilha logo e links */
+        padding: 0.8rem 1rem;
+    }
+
+    .navbar-brand {
+        margin-bottom: 0.8rem;
+    }
+
+    .navbar-nav {
+        gap: 0.8rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    .game-container {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .game-board {
+        max-width: 300px; /* Grid um pouco menor */
+        gap: 6px;
+    }
+
+    .word-row {
+        gap: 6px;
+    }
+
+    .letter-box {
+        font-size: 1.5rem;
+    }
+
+    .keyboard-container {
+        max-width: 100%; /* Teclado ocupa a largura total */
+    }
+
+    .key {
+        padding: 12px 8px;
+        font-size: 0.95rem;
+        max-width: 40px; /* Teclas menores */
+    }
+
+    .key.large {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+        max-width: 65px;
+    }
+}
+
+@media (max-width: 480px) {
+    .key {
+        font-size: 0.85rem;
+        padding: 10px 6px;
+        max-width: 35px;
+    }
+
+    .key.large {
+        font-size: 0.8rem;
+        padding: 10px 8px;
+        max-width: 55px;
+    }
+}
+

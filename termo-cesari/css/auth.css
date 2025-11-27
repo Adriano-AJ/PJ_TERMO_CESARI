@@ -1,0 +1,185 @@
+/* --- Reset Básico --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Fonte moderna */
+    background-color: #f4f4f4;
+}
+
+/* --- Layout Dividido (Split Screen) --- */
+.split-screen {
+    display: flex;
+    height: 100vh; /* Ocupa 100% da altura da tela */
+    width: 100%;
+}
+
+/* Lado Esquerdo (Azul) */
+.left-pane {
+    flex: 1; /* Ocupa metade da tela em desktops */
+    background-color: #1a3a7f; /* Seu Azul Principal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.logo {
+    max-width: 500px; /* Tamanho máximo do logo */
+    width: 80%;
+    height: auto;
+}
+
+/* Lado Direito (Branco) */
+.right-pane {
+    flex: 1; /* Ocupa a outra metade */
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* --- Container do Formulário --- */
+.form-container {
+    width: 100%;
+    max-width: 400px; /* Largura máxima para não ficar esticado demais */
+}
+
+.form-container h2 {
+    color: #1a3a7f; /* Azul no título */
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Campos do Formulário --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0; /* Borda cinza clara inicial */
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+/* Efeito ao clicar no input */
+.form-group input:focus {
+    outline: none;
+    border-color: #1a3a7f; /* Fica azul ao focar */
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(26, 58, 127, 0.1); /* Sombra suave azul */
+}
+
+/* --- Botão Salvar --- */
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    background-color: #28a745; /* Seu Verde */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);
+}
+
+.btn-submit:hover {
+    background-color: #218838; /* Verde mais escuro */
+    transform: translateY(-2px); /* Sobe um pouquinho */
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
+}
+
+.btn-submit:active {
+    transform: translateY(0); /* Volta ao normal ao clicar */
+}
+
+/* --- Rodapé do Form (Link para Login) --- */
+.auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.auth-footer a {
+    color: #1a3a7f;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* --- Responsividade (Mobile) --- */
+@media (max-width: 768px) {
+    .split-screen {
+        flex-direction: column; /* Empilha um em cima do outro */
+    }
+
+    .left-pane {
+        flex: 0 0 250px; /* Altura fixa para o topo azul no celular */
+        min-height: 200px;
+    }
+
+    .logo {
+        max-width: 150px; /* Logo menor no celular */
+    }
+
+    .right-pane {
+        flex: 1;
+        padding: 2rem 1.5rem;
+        align-items: flex-start; /* Alinha mais ao topo */
+    }
+    
+    .form-container {
+        margin-top: 1rem;
+    }
+}
+
+/* --- LOGIN --- */
+
+/* Variação de cor para o botão de Login (Azul Escuro/Navy) */
+.btn-login {
+    background-color: #14213d; /* Azul escuro profundo */
+    box-shadow: 0 4px 6px rgba(20, 33, 61, 0.3);
+}
+
+.btn-login:hover {
+    background-color: #0a111f; /* Quase preto no hover */
+    box-shadow: 0 6px 12px rgba(20, 33, 61, 0.4);
+}
+
+/* Ajuste opcional para links no footer ficarem da mesma cor do botão */
+.auth-footer a {
+    color: #1a3a7f;
+    transition: color 0.2s;
+}
+
+.auth-footer a:hover {
+    color: #28a745; /* Fica verde ao passar o mouse para indicar registro */
+}

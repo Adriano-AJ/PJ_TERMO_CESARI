@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - Termo Cesari</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/game.css"> 
+    <link rel="stylesheet" href="css/about.css"> 
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-brand">
+            <a href="index.html">
+                <img src="assets/logo.png" alt="Logo Termo Cesari" class="navbar-logo">
+            </a>
+        </div>
+        <nav class="navbar-nav">
+            <a href="rank.html" class="nav-link">RANK</a>
+            <a href="about.html" class="nav-link current">ABOUT</a>
+            <a href="login.html" id="auth-link" class="nav-link">LOGIN</a> 
+        </nav>
+    </header>
+
+    <main class="about-container">
+        
+        <section class="about-section">
+            <h2>Sobre o Jogo: Termo Cesari</h2>
+            <p><strong>Termo Cesari</strong> é uma versão personalizada e moderna do popular jogo de palavras "Termo" (ou Wordle). Nosso objetivo é proporcionar um desafio diário e divertido de vocabulário, com um toque especial de competição.</p>
+            <p>Os jogadores devem adivinhar uma palavra secreta de 5 letras em 5 tentativas. Após cada palpite, as cores indicam o quão perto você chegou:</p>
+            
+            <ul class="rules-list">
+                <li class="correct">🟩 Letra na posição correta.</li>
+                <li class="present">🟨 Letra na palavra, mas na posição errada.</li>
+                <li class="absent">⬛ Letra não existe na palavra.</li>
+            </ul>
+
+            <h3>Sistema de Ranqueamento</h3>
+            <p>Seu progresso é medido e comparado através de um sistema de ranking temático, que celebra a jornada de crescimento profissional:</p>
+            <div class="tiers">
+                <span>🥉 Candidato (Bronze)</span>
+                <span>🥈 Aprendiz (Prata)</span>
+                <span>🥇 Efetivado (Ouro)</span>
+                <span>💎 Encarregado (Platina)</span>
+                <span>✨ Gestor (Diamante)</span>
+                <span>👑 Diretoria (Mestre)</span>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="about-section team-section">
+            <h2>Desenvolvido pela Equipe Macaquitos</h2>
+    
+            <div class="creators-grid">
+                <div class="member-card">
+                    <img src="assets/avatars/wendel.png" alt="[Nome do Membro]" class="member-photo">
+                    <h3>Wendel</h3>
+                    <p class="role">Lider</p>
+                    <a href="[Link]" target="_blank" class="member-social">LinkedIn</a>
+                </div>
+                <div class="member-card">
+                    <img src="assets/avatars/adriano.png" alt="[Nome do Membro]" class="member-photo">
+                    <h3>Adriano</h3>
+                    <p class="role">Full-Stack</p>
+                    <a href="[Link]" target="_blank" class="member-social">LinkedIn</a>
+                </div>
+                
+                <div class="member-card">
+                    <img src="assets/avatars/alef.png" alt="[Nome do Membro]" class="member-photo">
+                    <h3>Alek</h3>
+                    <p class="role">Design UI/UX / Front-end</p>
+                    <a href="[Link]" target="_blank" class="member-social">LinkedIn</a>
+                </div>
+
+                 <div class="member-card">
+                    <img src="assets/avatars/alex.png" alt="[Nome do Membro]" class="member-photo">
+                    <h3>Alex</h3>
+                    <p class="role">Back-end</p>
+                    <a href="[Link]" target="_blank" class="member-social">LinkedIn</a>
+                </div>
+                 <div class="member-card">
+                    <img src="assets/avatars/caio.png" alt="[Nome do Membro]" class="member-photo">
+                    <h3>Caio</h3>
+                    <p class="role">Back-end</p>
+                    <a href="[Link]" target="_blank" class="member-social">LinkedIn</a>
+                </div>
+                 <div class="member-card">
+                    <img src="assets/avatars/ester.png" alt="[Nome do Membro]" class="member-photo">
+                    <h3>Ester</h3>
+                    <p class="role">Design UI/UX / Front-end</p>
+                    <a href="[Link]" target="_blank" class="member-social">LinkedIn</a>
+                </div>
+                 <div class="member-card">
+                    <img src="assets/avatars/patrick.png" alt="[Nome do Membro]" class="member-photo">
+                    <h3>Patrick</h3>
+                    <p class="role">Back-end</p>
+                    <a href="[Link]" target="_blank" class="member-social">LinkedIn</a>
+                </div>
+
+                </div>
+        </section>
+
+    </main>
+   <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/auth-service.js"></script>
+    <script type="module" src="js/game.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/session_log.js"></script>
+</body>
+</html>

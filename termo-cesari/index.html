@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termo Cesari</title>
+
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/global.css"> 
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-brand">
+            <img src="assets/logo.png" alt="Logo Termo Cesari" class="navbar-logo">
+        </div>
+        <nav class="navbar-nav">
+            <a href="rank.html" class="nav-link">RANK</a>
+            <a href="about.html" class="nav-link">ABOUT</a>
+            <a href="login.html" id="auth-link" class="nav-link">LOGIN</a>
+        </nav>
+    </header>
+
+    <main class="game-container">
+        <div id="game-board" class="game-board">
+        
+        </div>
+
+        <div id="keyboard-container" class="keyboard-container">
+            <div class="keyboard-row">
+                <button class="key" data-key="q">Q</button>
+                <button class="key" data-key="w">W</button>
+                <button class="key" data-key="e">E</button>
+                <button class="key" data-key="r">R</button>
+                <button class="key" data-key="t">T</button>
+                <button class="key" data-key="y">Y</button>
+                <button class="key" data-key="u">U</button>
+                <button class="key" data-key="i">I</button>
+                <button class="key" data-key="o">O</button>
+                <button class="key" data-key="p">P</button>
+            </div>
+            <div class="keyboard-row">
+                <div class="spacer half"></div> <button class="key" data-key="a">A</button>
+                <button class="key" data-key="s">S</button>
+                <button class="key" data-key="d">D</button>
+                <button class="key" data-key="f">F</button>
+                <button class="key" data-key="g">G</button>
+                <button class="key" data-key="h">H</button>
+                <button class="key" data-key="j">J</button>
+                <button class="key" data-key="k">K</button>
+                <button class="key" data-key="l">L</button>
+                <button class="key large" data-key="enter">ENTER</button>
+            </div>
+            <div class="keyboard-row">
+                <button class="key" data-key="ç">Ç</button>
+                <button class="key" data-key="z">Z</button>
+                <button class="key" data-key="x">X</button>
+                <button class="key" data-key="c">C</button>
+                <button class="key" data-key="v">V</button>
+                <button class="key" data-key="b">B</button>
+                <button class="key" data-key="n">N</button>
+                <button class="key" data-key="m">M</button>
+                <button class="key large" data-key="backspace">BACKSPACE</button>
+            </div>
+        </div>
+    </main>
+<div id="game-over-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <div id="modal-icon" class="modal-icon">🏆</div>
+        
+        <h2 id="modal-title">Parabéns!</h2>
+        
+        <p class="modal-text">A palavra correta era:</p>
+        <div id="modal-word" class="secret-word-display">TERMO</div>
+        
+        <p id="modal-attempts" class="attempts-text">Você conseguiu em 3 tentativas.</p>
+
+        <div class="modal-actions">
+            <button id="btn-share" class="btn-modal btn-share">
+                <span class="icon">📋</span> Compartilhar
+            </button>
+            <button id="btn-restart" class="btn-modal btn-restart">
+                Jogar Novamente
+            </button>
+        </div>
+    </div>
+    </div>
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/auth-service.js"></script>
+    <script type="module" src="js/game.js"></script>
+    <script type="module" src="js/session.js"></script>
+    <script type="module" src="js/session_log.js"></script>
+</body>
+</html>
