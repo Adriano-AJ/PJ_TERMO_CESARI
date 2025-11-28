@@ -1,18 +1,26 @@
 // public/js/game.js
 
+// --- Importações ---
+import { saveGameResult } from "./score-service.js"; 
+
 // --- Configurações do Jogo ---
 const WORD_LENGTH = 5;
 const MAX_ATTEMPTS = 5;
-// URL do Gist com a lista de palavras (separadas por quebra de linha)
-const WORDS_API_URL = 'https://gist.githubusercontent.com/Adriano-AJ/f6c70754afa07becc07a34497ee8c67b/raw/d3b5941149a8f5f0caaabd4c3d88cc394c7bf8dd/gistfile1.txt';
+
+// 1. Lista de Palavras Secretas (Respostas Possíveis - Mantemos o Gist pois é curado para o jogo)
+const SECRET_WORDS_API_URL = 'https://gist.githubusercontent.com/Adriano-AJ/f6c70754afa07becc07a34497ee8c67b/raw/d3b5941149a8f5f0caaabd4c3d88cc394c7bf8dd/gistfile1.txt';
+
+// 2. Caminho Local do Dicionário Completo (Validação)
+// (Certifique-se de que o arquivo 'dicionario.txt' está na pasta 'public')
+const ALL_WORDS_LOCAL_PATH = './dicionario.txt';
 
 // Estado do Jogo
 let secretWord = "";
-let validWordsSet = new Set(); // Usamos Set para busca rápida O(1)
+let validWordsSet = new Set(); // Set normalizado (sem acentos) para validação
 let currentAttempt = 0;
 let currentTile = 0;
 let isGameOver = false;
-let isLoading = true; // Trava o jogo enquanto carrega
+let isLoading = true;
 
 let guesses = [
     ["", "", "", "", ""],
@@ -29,42 +37,66 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function initGame() {
-    // 1. Buscar palavras da API
     try {
-        console.log("Carregando palavras...");
+        console.log("Iniciando jogo...");
         await loadWords();
+        
+        // Sorteia uma palavra secreta da lista principal
+        const randomIndex = Math.floor(Math.random() * secretWordsList.length);
+        secretWord = secretWordsList[randomIndex];
+        
+        console.log("Palavra Secreta:", secretWord); // Cheat para testes
+        
         isLoading = false;
-        console.log("Jogo pronto!");
+        createGrid();
+        
     } catch (error) {
-        alert("Erro ao carregar lista de palavras. Verifique sua conexão.");
-        console.error(error);
-        return;
+        
     }
-
-    // 2. Escolher palavra aleatória do SET convertido em Array
-    const wordsArray = Array.from(validWordsSet);
-    const randomIndex = Math.floor(Math.random() * wordsArray.length);
-    secretWord = wordsArray[randomIndex];
-    
-    console.log("Palavra Secreta (Debug):", secretWord); 
-
-    // 3. Criar o Grid no HTML
-    createGrid();
 }
 
+// Variável auxiliar apenas para o sorteio
+let secretWordsList = [];
+
 async function loadWords() {
-    const response = await fetch(WORDS_API_URL);
-    if (!response.ok) throw new Error("Falha na requisição");
-    
-    const text = await response.text();
-    
-    // Transforma o texto em array, limpa espaços, converte para maiúsculo e filtra por 5 letras
-    const words = text.split('\n')
-        .map(w => w.trim().toUpperCase())
-        .filter(w => w.length === WORD_LENGTH);
-        
-    // Cria o Set para validação rápida depois
-    validWordsSet = new Set(words);
+    try {
+        // Carrega as duas listas simultaneamente
+        const [secretsResponse, allWordsResponse] = await Promise.all([
+            fetch(SECRET_WORDS_API_URL),
+            fetch(ALL_WORDS_LOCAL_PATH)
+        ]);
+
+        if (!secretsResponse.ok) throw new Error("Erro ao carregar lista de segredos (Gist)");
+        if (!allWordsResponse.ok) throw new Error("Erro ao carregar dicionario.txt local");
+
+        const secretsText = await secretsResponse.text();
+        const allWordsText = await allWordsResponse.text();
+
+        // 1. Prepara a lista de RESPOSTAS (Mantém acentos originais para exibir no final)
+        secretWordsList = secretsText.split('\n')
+            .map(w => w.trim().toUpperCase())
+            .filter(w => w.length === WORD_LENGTH);
+
+        // 2. Prepara o Dicionário de VALIDAÇÃO (Remove acentos para facilitar a busca)
+        // O arquivo 'dicionario.txt' tem palavras de todos os tamanhos, vamos filtrar só as de 5
+        const allWords = allWordsText.split('\n')
+            .map(w => w.trim())
+            .filter(w => w.length === WORD_LENGTH); // Filtra apenas 5 letras
+
+        // Cria o Set Normalizado (Sem acentos: ÁGUIA vira AGUIA)
+        validWordsSet = new Set(
+            allWords.map(w => w.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase())
+        );
+
+        // Garante que as palavras secretas também estejam no validador
+        secretWordsList.forEach(word => {
+            const normalized = word.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase();
+            validWordsSet.add(normalized);
+        });
+
+    } catch (error) {
+        throw error;
+    }
 }
 
 function createGrid() {
@@ -154,11 +186,14 @@ function checkGuess() {
     }
 
     const guess = guesses[currentAttempt].join("");
+    
+    // Normaliza o que o usuário digitou para verificar no dicionário
+    const guessNormalized = guess.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
-    // 2. NOVA VERIFICAÇÃO: A palavra existe no dicionário?
-    if (!validWordsSet.has(guess)) {
+    // 2. Validação atualizada
+    if (!validWordsSet.has(guessNormalized)) {
         alert("Palavra não existe na lista!");
-        shakeRow(currentAttempt); // Efeito visual de erro (opcional, adicionei abaixo)
+        shakeRow(currentAttempt);
         return; 
     }
     
@@ -198,22 +233,38 @@ function checkGuess() {
     
     if (originalGuess === secretWord) {
         isGameOver = true;
-        // Espera um pouco para a animação da última letra terminar antes de mostrar o modal
+        
+        // --- CÁLCULO DE PONTOS ---
+        // Array de pontos por tentativa: 
+        // 1ª: 100pts, 2ª: 80pts, 3ª: 60pts, 4ª: 40pts, 5ª: 20pts
+        const pointsTable = [100, 80, 60, 40, 20];
+        const pointsEarned = pointsTable[currentAttempt];
+
+        // Salva no Firebase
+        saveGameResult(pointsEarned);
+
+        // Mostra o Modal
         setTimeout(() => {
-            showGameOverModal(true, currentAttempt + 1);
+            showGameOverModal(true, currentAttempt + 1, pointsEarned);
         }, 500);
+
     } else {
-        if (currentAttempt === MAX_ATTEMPTS - 1) {
-            isGameOver = true;
-            setTimeout(() => {
-                showGameOverModal(false, MAX_ATTEMPTS);
-            }, 500);
-        } else {
             // Jogo continua
+            if(currentAttempt === MAX_ATTEMPTS - 1) {
+                isGameOver = true;
+
+                // Mostra o Modal de Derrota
+                setTimeout(() => {
+                    showGameOverModal(false, MAX_ATTEMPTS);
+                }, 500);
+
+                return;
+            }
+
+            // Próxima tentativa
             currentAttempt++;
             currentTile = 0;
         }
-    }
 }
 
 // --- Funções Auxiliares de UI ---
@@ -250,7 +301,8 @@ function shakeRow(rowIndex) {
 
 // --- Funções do Modal de Fim de Jogo ---
 
-function showGameOverModal(isWin, attemptsUsed) {
+// Altere a assinatura da função para receber 'points'
+function showGameOverModal(isWin, attemptsUsed, points = 0) {
     const modal = document.getElementById('game-over-modal');
     const title = document.getElementById('modal-title');
     const icon = document.getElementById('modal-icon');
@@ -262,17 +314,17 @@ function showGameOverModal(isWin, attemptsUsed) {
 
     if (isWin) {
         title.textContent = "Parabéns!";
-        title.style.color = "#28a745"; // Verde
+        title.style.color = "#28a745"; 
         icon.textContent = "🏆";
-        attemptsText.textContent = `Você conseguiu em ${attemptsUsed} tentativa(s)!`;
+        // Adiciona a informação dos pontos
+        attemptsText.innerHTML = `Você conseguiu em ${attemptsUsed} tentativa(s).<br><strong>+${points} PONTOS!</strong>`;
     } else {
-        title.textContent = "Não foi dessa vez...";
-        title.style.color = "#dc3545"; // Vermelho
-        icon.textContent = "😓";
-        attemptsText.textContent = "Acabaram suas tentativas.";
+        title.textContent = "Fim de Jogo!";
+        title.style.color = "#dc3545"; 
+        icon.textContent = "💀";
+        attemptsText.textContent = `Você usou todas as tentativas.`;
     }
 
-    // Mostra o modal
     modal.classList.remove('hidden');
 }
 

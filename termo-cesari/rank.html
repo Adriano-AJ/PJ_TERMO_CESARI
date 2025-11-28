@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking - Termo Cesari</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/game.css"> <style>
+        /* Estilos específicos para a tabela de Rank */
+        .rank-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .rank-title {
+            text-align: center;
+            color: #1a3a7f;
+            margin-bottom: 1.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #1a3a7f;
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        tr:hover { background-color: #f1f1f1; }
+        
+        .medal { font-size: 1.2rem; margin-right: 5px; }
+        .score-val { font-weight: bold; color: #28a745; }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+    <div class="navbar-brand">
+        <img src="assets/logo.png" alt="Logo Termo Cesari" class="navbar-logo">
+    </div>
+    <nav class="navbar-nav">
+        <a href="index.html" class="nav-link">JOGAR</a>
+        <a href="rank.html" class="nav-link">RANK</a>
+        <a href="about.html" class="nav-link">ABOUT</a>
+        <a href="login.html" id="auth-link" class="nav-link">LOGIN</a>
+    </nav>
+</header>
+
+    <main class="rank-container">
+        <h1 class="rank-title">Ranking Global 🏆</h1>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Pos</th>
+                    <th>Jogador</th>
+                    <th>Partidas</th>
+                    <th>Pontuação Total</th>
+                </tr>
+            </thead>
+            <tbody id="rank-table-body">
+                <tr>
+                    <td colspan="4" style="text-align:center;">Carregando ranking...</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/session_log.js"></script>
+    <script type="module" src="js/rank.js"></script>
+</body>
+</html>

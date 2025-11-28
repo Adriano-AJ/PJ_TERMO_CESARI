@@ -17,21 +17,31 @@
 <body>
 
     <header class="navbar">
-        <div class="navbar-brand">
-            <img src="assets/logo.png" alt="Logo Termo Cesari" class="navbar-logo">
-        </div>
-        <nav class="navbar-nav">
-            <a href="rank.html" class="nav-link">RANK</a>
-            <a href="about.html" class="nav-link">ABOUT</a>
-            <a href="login.html" id="auth-link" class="nav-link">LOGIN</a>
-        </nav>
-    </header>
+    <div class="navbar-brand">
+        <img src="assets/logo.png" alt="Logo Termo Cesari" class="navbar-logo">
+    </div>
+    <nav class="navbar-nav">
+        <button id="btn-tutorial-toggle" class="nav-link btn-toggle" title="Ligar/Desligar Tutorial Automático">
+            TUTORIAL: ON
+        </button>
+        
+        <a href="rank.html" class="nav-link">RANK</a>
+        <a href="about.html" class="nav-link">ABOUT</a>
+        <a href="login.html" id="auth-link" class="nav-link">LOGIN</a>
+    </nav>
+</header>
+
+    <div id="login-warning" class="login-warning hidden">
+        ⚠️ <strong>Atenção:</strong> Você não está logado. Sua pontuação não será salva no Rank. 
+        <a href="login.html">Entrar agora</a>
+    </div>
 
     <main class="game-container">
-        <div id="game-board" class="game-board">
-        
-        </div>
-
+    <div id="game-board" class="game-board"></div>
+    <div id="keyboard-container" class="keyboard-container">
+         </div>
+</main>
+    <main class="game-container">
         <div id="keyboard-container" class="keyboard-container">
             <div class="keyboard-row">
                 <button class="key" data-key="q">Q</button>
@@ -96,5 +106,50 @@
     <script type="module" src="js/game.js"></script>
     <script type="module" src="js/session.js"></script>
     <script type="module" src="js/session_log.js"></script>
+    <script type="module" src="js/tutorial.js"></script> 
+    <div id="tutorial-modal" class="modal-overlay hidden">
+    <div class="modal-content tutorial-content">
+        <button id="btn-close-tutorial" class="close-btn">&times;</button>
+        <h2>Como Jogar</h2>
+        <p>Descubra a palavra certa em 5 tentativas.</p>
+        <p>Depois de cada tentativa, as peças mostram o quão perto você está da solução.</p>
+        
+        <hr>
+
+        <div class="examples">
+            <p><strong>Exemplos</strong></p>
+            
+            <div class="example-row">
+                <div class="letter-box correct small">T</div>
+                <div class="letter-box small">U</div>
+                <div class="letter-box small">R</div>
+                <div class="letter-box small">M</div>
+                <div class="letter-box small">A</div>
+            </div>
+            <p>A letra <strong>T</strong> faz parte da palavra e está na posição correta.</p>
+
+            <div class="example-row">
+                <div class="letter-box small">V</div>
+                <div class="letter-box small">I</div>
+                <div class="letter-box present small">O</div>
+                <div class="letter-box small">L</div>
+                <div class="letter-box small">A</div>
+            </div>
+            <p>A letra <strong>O</strong> faz parte da palavra, mas em outra posição.</p>
+
+            <div class="example-row">
+                <div class="letter-box small">P</div>
+                <div class="letter-box small">U</div>
+                <div class="letter-box small">L</div>
+                <div class="letter-box absent small">G</div>
+                <div class="letter-box small">A</div>
+            </div>
+            <p>A letra <strong>G</strong> não faz parte da palavra.</p>
+        </div>
+
+        <button id="btn-start-game" class="btn-modal btn-restart">JOGAR!</button>
+    </div>
+</div>
+
 </body>
 </html>

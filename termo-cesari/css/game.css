@@ -371,3 +371,112 @@ body {
     }
 }
 
+/* public/css/game.css */
+
+/* --- Estilos do Modal de Tutorial --- */
+.tutorial-content {
+    text-align: left; /* Texto alinhado à esquerda para leitura fácil */
+    max-width: 500px;
+}
+
+.tutorial-content h2 {
+    color: #1a3a7f;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.tutorial-content p {
+    margin-bottom: 0.8rem;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.tutorial-content hr {
+    margin: 1rem 0;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+/* Exemplos de Letras no Tutorial */
+.example-row {
+    display: flex;
+    gap: 5px;
+    margin: 10px 0 5px 0;
+}
+
+.letter-box.small {
+    width: 40px; /* Versão menor das caixas para o exemplo */
+    height: 40px;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+}
+
+/* Botão de Fechar (X) no topo */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+}
+.close-btn:hover { color: #333; }
+
+/* --- Botão Toggle na Navbar --- */
+.btn-toggle {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-toggle:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Estilo para quando está DESATIVADO (Vermelho ou Opaco) */
+.btn-toggle.disabled {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+/* --- Barra de Aviso de Login --- */
+.login-warning {
+    background-color: #ffc107; /* Amarelo de atenção */
+    color: #212529; /* Texto escuro */
+    text-align: center;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    animation: fadeInDown 0.5s ease;
+}
+
+.login-warning a {
+    color: #000;
+    font-weight: 700;
+    text-decoration: underline;
+    margin-left: 5px;
+}
+
+.login-warning a:hover {
+    color: #1a3a7f; /* Azul da marca no hover */
+}
+
+/* Animação suave para aparecer */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Classe utilitária para esconder elementos (já deve existir, mas garanta que tenha) */
+.hidden {
+    display: none !important;
+}
