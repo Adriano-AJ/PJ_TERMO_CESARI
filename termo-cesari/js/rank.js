@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (index === 1) posDisplay = "✨ 2º";
         if (index === 2) posDisplay = "💎 3º";
         if (index === 3) posDisplay = "🥇 4º";
-        if (index === 3) posDisplay = "🥈 5º";
-        if (index === 3) posDisplay = "🥉 6º";
+        if (index === 4) posDisplay = "🥈 5º";
+        if (index === 5) posDisplay = "🥉 6º";
 
         row.innerHTML = `
             <td>${posDisplay}</td>
@@ -36,4 +36,5 @@ document.addEventListener("DOMContentLoaded", async () => {
         `;
         tableBody.appendChild(row);
     });
+
 });
