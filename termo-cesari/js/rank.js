@@ -29,10 +29,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (index === 5) posDisplay = "🥉 6º";
 
         row.innerHTML = `
-            <td>${posDisplay}</td>
-            <td><strong>${user.name}</strong></td>
-            <td>${user.games}</td>
-            <td class="score-val">${user.score} pts</td>
+            <td data-label="Pos" >${posDisplay}</td>
+            <td data-label="Jogador" ><strong>${user.name}</strong></td>
+            <td data-label="Partidas" >${user.games}</td>
+            <td data-label="Pontuação Total" class="score-val">${user.score} pts</td>
         `;
         tableBody.appendChild(row);
     });
