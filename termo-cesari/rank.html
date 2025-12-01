@@ -10,51 +10,83 @@
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
    /* Container normal sem rolagem interna */
    <style>
+/* ===== CONTAINER PRINCIPAL ===== */
 .rank-container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1rem;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 900px;
+    margin: 2.5rem auto;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0px 6px 22px rgba(0, 0, 0, 0.12);
+    border: 2px solid #d9e2f5;
 }
 
-/* Fixar o THEAD no topo da página */
-thead th {
-    position: sticky;
-    top: 80px; /* distância do topo (ajuste conforme sua navbar) */
-    z-index: 100;
-    background-color: #1a3a7f;
-    color: #fff;
+/* ===== TÍTULO ===== */
+.rank-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: #1b2d6b;
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 1px;
 }
 
-/* Estilização da tabela */
+/* ===== TABELA ===== */
 table {
     width: 100%;
     border-collapse: collapse;
+    font-family: "Poppins", sans-serif;
 }
 
-th, td {
+/* ===== CABEÇALHO STICKY ===== */
+thead th {
+    position: sticky;
+    top: 80px; /* ajuste para sua navbar */
+    z-index: 50;
+    background-color: #1b2d6b;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #15225a;
+}
+
+/* ===== CÉLULAS ===== */
+td {
     padding: 12px 15px;
-    border-bottom: 1px solid #ddd;
+    color: #2d2d2d;
+    font-size: 1rem;
 }
 
-/* Alternância e hover */
-tr:nth-child(even) { background-color: #f9f9f9; }
-tr:hover { background-color: #f1f1f1; }
+/* ===== LINHAS ALTERNADAS ===== */
+tr:nth-child(even) {
+    background-color: #f4f7ff;
+}
 
+/* ===== HOVER ===== */
+tr:hover {
+    background-color: #e8efff;
+    transition: 0.25s ease;
+}
 
+/* ===== COLUNA ESCONDIDA NO CELULAR ===== */
 @media (max-width: 600px) {
-    th:nth-child(3),
+    th:nth-child(3), /* PARTIDAS */
     td:nth-child(3) {
         display: none;
     }
 
     th, td {
-        padding: 8px 6px;
         font-size: 0.85rem;
+        padding: 10px 8px;
+    }
+
+    .rank-container {
+        padding: 1rem;
     }
 }
+
 </style>
 
 </head>
