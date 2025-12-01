@@ -7,42 +7,135 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/game.css"> <style>
-        /* Estilos específicos para a tabela de Rank */
+    /* Estilo base */
+    .rank-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 1rem;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .rank-title {
+        text-align: center;
+        color: #1a3a7f;
+        margin-bottom: 1.5rem;
+        font-family: 'Oswald', sans-serif;
+        font-size: 2rem;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        font-size: 1rem;
+    }
+
+    th {
+        background-color: #1a3a7f;
+        color: white;
+        font-weight: 600;
+    }
+
+    tr:nth-child(even) { background-color: #f9f9f9; }
+    tr:hover { background-color: #f1f1f1; }
+
+    .medal { font-size: 1.2rem; margin-right: 5px; }
+    .score-val { font-weight: bold; color: #28a745; }
+
+    /* ====================== */
+    /*        MOBILE          */
+    /* ====================== */
+
+    @media (max-width: 600px) {
         .rank-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 1rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 0.5rem;
+            margin: 1rem;
         }
+
         .rank-title {
-            text-align: center;
+            font-size: 1.6rem;
+        }
+
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+
+        thead {
+            display: none; /* esconde o cabeçalho no celular */
+        }
+
+        tr {
+            margin-bottom: 1rem;
+            background: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        td {
+            border: none;
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 5px;
+            font-size: 0.9rem;
+        }
+
+        td::before {
+            content: attr(data-label);
+            font-weight: bold;
             color: #1a3a7f;
-            margin-bottom: 1.5rem;
-            font-family: 'Oswald', sans-serif;
-            font-size: 2rem;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+
+        /* Ajuste do navbar */
+        .navbar {
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
         }
+
+        .navbar-logo {
+            width: 120px;
+        }
+
+        .navbar-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .nav-link {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+    }
+
+    /* ====================== */
+    /*       TABLETS          */
+    /* ====================== */
+
+    @media (min-width: 601px) and (max-width: 900px) {
+        .rank-container {
+            max-width: 600px;
+        }
+
         th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+            font-size: 0.95rem;
         }
-        th {
-            background-color: #1a3a7f;
-            color: white;
-            font-weight: 600;
+
+        .rank-title {
+            font-size: 1.8rem;
         }
-        tr:nth-child(even) { background-color: #f9f9f9; }
-        tr:hover { background-color: #f1f1f1; }
-        
-        .medal { font-size: 1.2rem; margin-right: 5px; }
-        .score-val { font-weight: bold; color: #28a745; }
-    </style>
+    }
+</style>
+
 </head>
 <body>
 
