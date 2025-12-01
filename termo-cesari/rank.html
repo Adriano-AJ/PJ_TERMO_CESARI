@@ -6,135 +6,110 @@
     <title>Ranking - Termo Cesari</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/game.css"> <style>
-    /* Estilo base */
+    <link rel="stylesheet" href="css/game.css"> 
+    <style>
+/* ESTILO BASE (igual ao anterior) */
+.rank-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.rank-title {
+    text-align: center;
+    color: #1a3a7f;
+    margin-bottom: 1.5rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+th {
+    background-color: #1a3a7f;
+    color: white;
+    font-weight: 600;
+}
+
+tr:nth-child(even) { background-color: #f9f9f9; }
+tr:hover { background-color: #f1f1f1; }
+
+.medal { font-size: 1.2rem; margin-right: 5px; }
+.score-val { font-weight: bold; color: #28a745; }
+
+/* =============================== */
+/*  RESPONSIVO COM LAYOUT NORMAL   */
+/*  (horizontal no celular)        */
+/* =============================== */
+
+@media (max-width: 600px) {
+
     .rank-container {
-        max-width: 800px;
-        margin: 2rem auto;
-        padding: 1rem;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        padding: 0.5rem;
+        margin: 1rem;
     }
 
     .rank-title {
-        text-align: center;
-        color: #1a3a7f;
-        margin-bottom: 1.5rem;
-        font-family: 'Oswald', sans-serif;
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
+    /* Diminui o tamanho da fonte para caber na horizontal */
     table {
-        width: 100%;
-        border-collapse: collapse;
+        font-size: 0.8rem;
     }
 
     th, td {
-        padding: 12px 15px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-        font-size: 1rem;
+        padding: 8px 6px;
+        font-size: 0.75rem;
     }
 
-    th {
-        background-color: #1a3a7f;
-        color: white;
-        font-weight: 600;
+    /* Faz a tabela rolar horizontalmente se o conteúdo não couber */
+    .rank-container {
+        overflow-x: auto;
     }
 
-    tr:nth-child(even) { background-color: #f9f9f9; }
-    tr:hover { background-color: #f1f1f1; }
-
-    .medal { font-size: 1.2rem; margin-right: 5px; }
-    .score-val { font-weight: bold; color: #28a745; }
-
-    /* ====================== */
-    /*        MOBILE          */
-    /* ====================== */
-
-    @media (max-width: 600px) {
-        .rank-container {
-            padding: 0.5rem;
-            margin: 1rem;
-        }
-
-        .rank-title {
-            font-size: 1.6rem;
-        }
-
-        table, thead, tbody, th, td, tr {
-            display: block;
-        }
-
-        thead {
-            display: none; /* esconde o cabeçalho no celular */
-        }
-
-        tr {
-            margin-bottom: 1rem;
-            background: #fff;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        td {
-            border: none;
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 5px;
-            font-size: 0.9rem;
-        }
-
-        td::before {
-            content: attr(data-label);
-            font-weight: bold;
-            color: #1a3a7f;
-        }
-
-        /* Ajuste do navbar */
-        .navbar {
-            flex-direction: column;
-            gap: 10px;
-            padding: 10px;
-        }
-
-        .navbar-logo {
-            width: 120px;
-        }
-
-        .navbar-nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .nav-link {
-            padding: 8px 12px;
-            font-size: 0.9rem;
-        }
+    table {
+        min-width: 500px; /* garante que a tabela não quebre */
     }
 
-    /* ====================== */
-    /*       TABLETS          */
-    /* ====================== */
-
-    @media (min-width: 601px) and (max-width: 900px) {
-        .rank-container {
-            max-width: 600px;
-        }
-
-        th, td {
-            font-size: 0.95rem;
-        }
-
-        .rank-title {
-            font-size: 1.8rem;
-        }
+    /* Navbar responsiva */
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
     }
+
+    .navbar-nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .navbar-logo {
+        width: 120px;
+    }
+
+    .nav-link {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+}
 </style>
+
 
 </head>
 <body>
