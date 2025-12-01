@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/game.css"> 
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
-    <style>
-/* ESTILO BASE (igual ao anterior) */
+   /* Container normal sem rolagem interna */
+   <style>
 .rank-container {
     max-width: 800px;
     margin: 2rem auto;
@@ -19,14 +19,15 @@
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.rank-title {
-    text-align: center;
-    color: #1a3a7f;
-    margin-bottom: 1.5rem;
-    font-family: 'Oswald', sans-serif;
-    font-size: 2rem;
+/* Fixar o THEAD no topo da página */
+thead th {
+    position: sticky;
+    top: 80px; /* distância do topo (ajuste conforme sua navbar) */
+    z-index: 100;
+    background-color: #1a3a7f;
 }
 
+/* Estilização da tabela */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -34,85 +35,25 @@ table {
 
 th, td {
     padding: 12px 15px;
-    text-align: left;
     border-bottom: 1px solid #ddd;
-    font-size: 1rem;
 }
 
-th {
-    background-color: #1a3a7f;
-    color: white;
-    font-weight: 600;
-}
-
+/* Alternância e hover */
 tr:nth-child(even) { background-color: #f9f9f9; }
 tr:hover { background-color: #f1f1f1; }
 
-.medal { font-size: 1.2rem; margin-right: 5px; }
-.score-val { font-weight: bold; color: #28a745; }
-
-/* =============================== */
-/*  RESPONSIVO COM LAYOUT NORMAL   */
-/*  (horizontal no celular)        */
-/* =============================== */
-
 @media (max-width: 600px) {
-     th:nth-child(3),
+    th:nth-child(3),
     td:nth-child(3) {
         display: none;
     }
 
-    .rank-container {
-        padding: 0.5rem;
-        margin: 1rem;
-    }
-
-    .rank-title {
-        font-size: 1.5rem;
-    }
-
-    /* Diminui o tamanho da fonte para caber na horizontal */
-    table {
-        font-size: 0.8rem;
-    }
-
     th, td {
         padding: 8px 6px;
-        font-size: 0.75rem;
-    }
-
-    /* Faz a tabela rolar horizontalmente se o conteúdo não couber */
-    
-
-    table {
-        min-width: 500px; /* garante que a tabela não quebre */
-    }
-
-    /* Navbar responsiva */
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
-
-    .navbar-nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .navbar-logo {
-        width: 120px;
-    }
-
-    .nav-link {
-        padding: 6px 10px;
         font-size: 0.85rem;
     }
 }
 </style>
-
 
 </head>
 <body>
