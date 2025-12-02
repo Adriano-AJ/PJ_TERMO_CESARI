@@ -143,7 +143,7 @@ body {
 
     .left-pane {
         flex: 0 0 250px; /* Altura fixa para o topo azul no celular */
-        min-height: 200px;
+        min-height: 100px;
     }
 
     .logo {
