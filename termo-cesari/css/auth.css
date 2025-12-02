@@ -42,6 +42,11 @@ body {
     align-items: center;
     padding: 2rem;
 }
+.brand-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* --- Container do Formulário --- */
 .form-container {
@@ -145,7 +150,7 @@ body {
         flex: 0 0 250px; /* Altura fixa para o topo azul no celular */
         max-height: 100px;
     }
-
+    
     .logo {
         max-width: 150px; /* Logo menor no celular */
     }
