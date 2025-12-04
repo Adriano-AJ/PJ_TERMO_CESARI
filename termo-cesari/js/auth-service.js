@@ -32,7 +32,7 @@ export async function handleRegister(email, password, name) {
 
     } catch (error) {
         console.error("ERRO NO REGISTRO:", error);
-        alert(`Falha no registro: ${error.message}`);
+        alert(`Falha no registro!`);
         return false;
     }
 }
@@ -49,7 +49,7 @@ export async function handleLogin(email, password) {
 
     } catch (error) {
         console.error("Erro no login:", error);
-        alert(`Erro: ${error.message}`);
+        alert(`Não foi possivel realizar o login!`);
         return false;
     }
 }
@@ -85,11 +85,9 @@ export async function saveUserName(userUID, name, email) {
         });
 
         console.log("Dados salvos com sucesso!");
-        alert("Dados registrados com sucesso!");
 
     } catch (error) {
         console.error("Erro ao salvar no Firestore:", error);
-        alert(`Erro ao salvar no Firestore: ${error.message}`);
         throw error;
     }
 }
